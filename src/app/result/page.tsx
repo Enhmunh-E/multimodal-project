@@ -1,31 +1,32 @@
-"use client";
-import { useEffect, useState } from "react";
-import { getResponses } from "../actions";
+// "use client";
+// import { useEffect, useState } from "react";
+// import { getResponses } from "../actions";
 
-type ResponseType = {
-  firstAnswer: string;
-  secondAnswer: string;
-};
+// type ResponseType = {
+//   firstAnswer: string;
+//   secondAnswer: string;
+// };
 
 export default function ResultPage() {
-  const [responses, setResponses] = useState<ResponseType[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  useEffect(() => {
-    async function fetchResponses() {
-      setLoading(true);
-      const data = await getResponses();
-      setResponses(data.data as ResponseType[]);
-      setLoading(false);
-    }
-    fetchResponses();
-  }, []);
+  // const [responses, setResponses] = useState<ResponseType[]>([]);
+  // const [loading, setLoading] = useState<boolean>(true);
+  // useEffect(() => {
+  //   async function fetchResponses() {
+  //     setLoading(true);
+  //     const data = await getResponses();
+  //     setResponses(data.data as ResponseType[]);
+  //     setLoading(false);
+  //   }
+  //   fetchResponses();
+  // }, []);
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-4 pt-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <div className="flex flex-col gap-8 row-start-2 items-center sm:items-start max-w-[512px]">
         <h1 className="text-lg text-center font-[family-name:var(--font-geist-mono)] font-semibold">
-          Multimodal Project Responses
+          {/* Multimodal Project Responses */}
+          Thank You!
         </h1>
-        {loading && (
+        {/* {loading && (
           <p className="text-sm text-center w-full font-[family-name:var(--font-geist-mono)]">
             Loading...
           </p>
@@ -48,7 +49,7 @@ export default function ResultPage() {
               {response.secondAnswer}
             </div>
           </div>
-        ))}
+        ))} */}
       </div>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <p>
