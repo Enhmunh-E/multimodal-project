@@ -1,14 +1,35 @@
+"use client";
+import { useEffect, useState } from "react";
 import { getResponses } from "../actions";
 
-export default async function ResultPage() {
-  const responsesData = await getResponses();
-  const responses = responsesData.data || [];
+type ResponseType = {
+  firstAnswer: string;
+  secondAnswer: string;
+};
+
+export default function ResultPage() {
+  const [responses, setResponses] = useState<ResponseType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  useEffect(() => {
+    async function fetchResponses() {
+      setLoading(true);
+      const data = await getResponses();
+      setResponses(data.data as ResponseType[]);
+      setLoading(false);
+    }
+    fetchResponses();
+  }, []);
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-4 pt-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <div className="flex flex-col gap-8 row-start-2 items-center sm:items-start max-w-[512px]">
         <h1 className="text-lg text-center font-[family-name:var(--font-geist-mono)] font-semibold">
           Multimodal Project Responses
         </h1>
+        {loading && (
+          <p className="text-sm text-center w-full font-[family-name:var(--font-geist-mono)]">
+            Loading...
+          </p>
+        )}
         {responses.map((response, index) => (
           <div
             className="flex flex-col gap-1 border-white border-opacity-10 rounded-md border p-4"
