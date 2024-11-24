@@ -1,13 +1,21 @@
-import { getResponses, submitForm } from "./actions";
+"use client";
+import { useState } from "react";
+import { submitForm } from "./actions";
 
-export default async function Home() {
-  const responses = await getResponses();
-  console.log(responses);
+export default function Home() {
+  const [loading, setLoading] = useState<boolean>(false);
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <form
         className="flex flex-col gap-8 row-start-2 items-center sm:items-start"
         action={submitForm}
+        onSubmit={async (e) => {
+          e.preventDefault();
+          setLoading(true);
+          const formData = new FormData(e.target as HTMLFormElement);
+          await submitForm(formData);
+          setLoading(false);
+        }}
       >
         <h1 className="text-lg text-center font-[family-name:var(--font-geist-mono)] font-semibold">
           Multimodal Project
@@ -28,18 +36,19 @@ export default async function Home() {
           placeholder="Your answer here."
           name="secondAnswer"
         />
-        {/* <div className="flex gap-4 items-center flex-col sm:flex-row"> */}
-        <button
-          className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-          // href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-
-          // target="_blank"
-          type="submit"
-          rel="noopener noreferrer"
-        >
-          ↵ Submit
-        </button>
-        {/* </div> */}
+        {loading ? (
+          <p className="text-sm text-center w-full font-[family-name:var(--font-geist-mono)]">
+            Loading...
+          </p>
+        ) : (
+          <button
+            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+            type="submit"
+            rel="noopener noreferrer"
+          >
+            ↵ Submit
+          </button>
+        )}
       </form>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <p>
