@@ -10,9 +10,18 @@ const supabase = createClient(
 
 export async function submitForm(formData: FormData) {
   "use server";
-  const firstAnswer = formData.get("firstAnswer");
-  const secondAnswer = formData.get("secondAnswer");
-  await supabase.from("responses").insert({ firstAnswer, secondAnswer });
+  console.log(formData);
+  const obj = {
+    nationality: formData.get("nationality"),
+    nationalityIdentity: formData.get("nationalityIdentity"),
+    feed: formData.get("feed"),
+    feedDifference: formData.get("feedDifference"),
+    feedRepresentation: formData.get("feedRepresentation"),
+    identityQuestion: formData.get("identityQuestion"),
+    mainQ1: formData.get("mainQ1"),
+    mainQ2: formData.get("mainQ2"),
+  };
+  await supabase.from("responses").insert({ answers: obj });
   revalidatePath("/");
   redirect("/result");
 }

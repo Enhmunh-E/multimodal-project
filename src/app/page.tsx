@@ -20,22 +20,127 @@ export default function Home() {
         <h1 className="text-lg text-center font-[family-name:var(--font-geist-mono)] font-semibold">
           Multimodal Project
         </h1>
-        <label className="mb-2  text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          What makes you feel you are a part of CMU-Q?
-        </label>
-        <textarea
-          className="w-full bg-transparent border border-white border-opacity-20 rounded-sm min-h-11 pt-4 px-4 outline-none"
-          placeholder="Your answer here."
-          name="firstAnswer"
-        />
-        <label className="mb-2  text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          What identity issues are you facing today?
-        </label>
-        <textarea
-          className="w-full bg-transparent border border-white border-opacity-20 rounded-sm min-h-11 pt-4 px-4 outline-none"
-          placeholder="Your answer here."
-          name="secondAnswer"
-        />
+        <p className="mb-2 text-sm text-center font-[family-name:var(--font-geist-mono)]">
+          This is a form that aims to find out from the students CMU-Q about
+          what makes a CMU-Q student truly a CMU-Q student. The form also aims
+          to find out about any issues students at the CMU-Q campus face with
+          their identity. This form is totally anonymous (except for the data
+          entered), the data entered can be viewed grouped together in a nest of
+          different mind maps, highlighting the variety and uniqueness of the
+          CMU-Q identity.
+        </p>
+        <p className="opacity-70 mb-2 text-sm text-center font-[family-name:var(--font-geist-mono)]">
+          *Disclaimer: Thought the form and data are anonymous, this website
+          published on the internet and can be visited and viewed by anyone.
+        </p>
+        <div className="w-full flex flex-col gap-2">
+          <label className="text-base text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+            What is your nationality?
+          </label>
+          <input
+            className="w-full bg-transparent border border-white border-opacity-20 rounded-sm min-h-11 py-4 px-4 outline-none"
+            placeholder="Your answer here."
+            name="nationality"
+          />
+        </div>
+        <div className="w-full flex flex-col gap-2">
+          <label className="text-base text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+            Would you say that your nationality is a strong representation of
+            your own identity?
+          </label>
+          <select
+            className="w-full bg-transparent border border-white border-opacity-20 rounded-sm py-4 px-4 outline-none"
+            name="nationalityIdentity"
+          >
+            <option>YES</option>
+            <option>NO</option>
+          </select>
+        </div>
+        <div className="w-full flex flex-col gap-2">
+          <label className="text-base text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+            What do your instagram reels, or tiktok feed look like?
+          </label>
+          <select
+            className="w-full bg-transparent border border-white border-opacity-20 rounded-sm py-4 px-4 outline-none"
+            name="feed"
+          >
+            <option value="Completely Random">Completely Random</option>
+            <option value="Hyper-specific to one thing">
+              Hyper-specific to one thing
+            </option>
+            <option value="Memes">Memes</option>
+            <option value="Interesting things that are related to your interests or hobbies">
+              Interesting things that are related to your interests or hobbies
+            </option>
+            <option
+              value="A theme that correlates strongly with your beliefs (i.e.
+              religious)"
+            >
+              A theme that correlates strongly with your beliefs (i.e.
+              religious)
+            </option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div className="w-full flex flex-col gap-2">
+          <label className="text-base text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+            Compared to your peers, is your feed any different?
+          </label>
+          <select
+            className="w-full bg-transparent border border-white border-opacity-20 rounded-sm py-4 px-4 outline-none"
+            name="feedDifference"
+          >
+            <option>YES</option>
+            <option>NO</option>
+          </select>
+        </div>
+        <div className="w-full flex flex-col gap-2">
+          <label className="text-base text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+            Does this feed represent you as a person and your identity?
+          </label>
+          <select
+            className="w-full bg-transparent border border-white border-opacity-20 rounded-sm py-4 px-4 outline-none"
+            name="feedRepresentation"
+          >
+            <option>YES</option>
+            <option>NO</option>
+          </select>
+        </div>
+        <div className="w-full flex flex-col gap-2">
+          <label className="text-base text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+            An identity is how we choose to represent ourselves, or how we as
+            people can be described.
+          </label>
+          <textarea
+            className="w-full bg-transparent border border-white border-opacity-20 rounded-sm min-h-11 py-4 px-4 outline-none"
+            placeholder="Yes or no, and why?"
+            name="identityQuestion"
+          />
+        </div>
+        <div className="w-full flex flex-col gap-2">
+          <label className="text-base text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+            There are many different smaller identities that make up our main
+            identity as a whole, knowing this, what are the identities you think
+            that make up the CMU-Q identity as a whole.
+          </label>
+          <textarea
+            className="w-full bg-transparent border border-white border-opacity-20 rounded-sm min-h-11 py-4 px-4 outline-none"
+            placeholder="Answer Here."
+            name="mainQ1"
+          />
+        </div>
+        <div className="w-full flex flex-col gap-2">
+          <label className="text-base text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+            Lastly, is there anything at CMU-Q that makes you feel isolated. As
+            if you don’t belong here.
+          </label>
+          <textarea
+            className="w-full bg-transparent border border-white border-opacity-20 rounded-sm min-h-11 py-4 px-4 outline-none"
+            placeholder="Answer Here."
+            name="mainQ2"
+          />
+        </div>
+
         {loading ? (
           <p className="text-sm text-center w-full font-[family-name:var(--font-geist-mono)]">
             Loading...
