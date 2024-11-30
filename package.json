@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.46.1",
+    "@visx/visx": "^3.12.0",
     "@xyflow/react": "^12.3.5",
     "next": "15.0.3",
     "openai": "^4.73.1",

@@ -33,3 +33,33 @@ export async function getResponses() {
     .select("*")
     .order("id", { ascending: false });
 }
+
+export async function submitIdentity(identity: string) {
+  "use server";
+  return await supabase.from("identities").insert({
+    answer: identity,
+  });
+}
+
+export async function submitIdentityIssue(identityIssue: string) {
+  "use server";
+  return await supabase.from("identityIssues").insert({
+    answer: identityIssue,
+  });
+}
+
+export async function getIdentities() {
+  "use server";
+  return await supabase
+    .from("identities")
+    .select("*")
+    .order("id", { ascending: false });
+}
+
+export async function getIdentityIssues() {
+  "use server";
+  return await supabase
+    .from("identityIssues")
+    .select("*")
+    .order("id", { ascending: false });
+}
