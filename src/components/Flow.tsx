@@ -2,7 +2,6 @@
 import { useCallback } from "react";
 import {
   Background,
-  Controls,
   ReactFlow,
   addEdge,
   useNodesState,
@@ -11,6 +10,7 @@ import {
 } from "@xyflow/react";
 
 import "@xyflow/react/dist/style.css";
+import "../app/xy-theme.css";
 
 import { initialNodes, nodeTypes, type CustomNodeType } from "./nodes";
 import { initialEdges, edgeTypes, type CustomEdgeType } from "./edges";
@@ -37,7 +37,7 @@ export const Flow = ({ responses }: any) => {
     >
       <Background />
       {/* <MiniMap /> */}
-      <Controls />
+      {/* <Controls /> */}
     </ReactFlow>
   );
 };

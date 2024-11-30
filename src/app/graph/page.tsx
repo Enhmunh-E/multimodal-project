@@ -20,6 +20,7 @@ export default function GraphPage() {
     async function fetchResponses() {
       setLoading(true);
       const data = await getResponses();
+      console.log(data);
       setResponses(data.data as ResponseType[]);
       setLoading(false);
     }
@@ -28,7 +29,6 @@ export default function GraphPage() {
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
-  console.log(responses);
   return (
     <div
       style={{
@@ -36,7 +36,7 @@ export default function GraphPage() {
         height: size?.[1] || 0,
       }}
     >
-      <Flow responses={responses} />
+      <Flow />
     </div>
   );
   // return (
