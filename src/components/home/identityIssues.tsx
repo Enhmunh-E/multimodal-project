@@ -58,7 +58,7 @@ export const IdentityIssues = ({ ref }: { ref: LegacyRef<HTMLDivElement> }) => {
             </button>
           </div>
         </div>
-        <div className="md:w-1/2 flex flex-1 flex-col gap-3 max-h-[256px] overflow-scroll">
+        <div className="md:w-1/2 flex flex-1 flex-col gap-3 max-h-[256px] overflow-y-scroll">
           {loading ? (
             <div>Loading...</div>
           ) : (
