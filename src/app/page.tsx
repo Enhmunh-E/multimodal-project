@@ -1,10 +1,15 @@
 "use client";
 import { Header, Support } from "@/components";
 import Hero from "@/components/home/hero";
-import { useEffect, useMemo, useState } from "react";
-import { getResponses } from "./actions";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { getIdentities } from "./actions";
 import { IdentityIssues } from "@/components/home/identityIssues";
 import { Footer } from "@/components/home/footer";
+import { Welcome } from "@/components/home/welcome";
+
+function capitalizeFirstLetter(val: string) {
+  return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+}
 
 const App = () => {
   const [size, setSize] = useState<{
@@ -16,14 +21,18 @@ const App = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const texts = useMemo(() => {
     return responses.reduce(
-      (prev, curr) => prev + (curr.answers.mainQ1 || ""),
+      (prev, curr) =>
+        prev + (curr.answer ? capitalizeFirstLetter(curr.answer) + " " : " "),
       ""
     );
   }, [responses]);
+  const welcomeRef = useRef<HTMLDivElement | null>(null);
+  const ourIdentityRef = useRef<HTMLDivElement | null>(null);
+  const identityIssueRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     async function fetchResponses() {
       setLoading(true);
-      const data = await getResponses();
+      const data = await getIdentities();
       setResponses(data.data as ResponseType[]);
       setLoading(false);
     }
@@ -40,8 +49,18 @@ const App = () => {
   }, []);
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-      <div className="container mx-auto flex flex-col items-center justify-center">
+      <Header
+        welcomeRef={welcomeRef}
+        ourIdentityRef={ourIdentityRef}
+        identityIssueRef={identityIssueRef}
+      />
+      <Welcome ref={welcomeRef} />
+      <div className="w-full h-1 bg-white my-16 opacity-20" />
+      <div
+        className="container mx-auto flex flex-col items-center justify-center"
+        ref={ourIdentityRef}
+      >
+        <p className="font-bold text-3xl text-[#c41e3a] mb-4">OUR IDENTITY</p>
         {size && (
           <>
             <span
@@ -70,12 +89,13 @@ const App = () => {
             )}
           </>
         )}
+        <div className="mt-12 p-4">
+          <Support />
+        </div>
       </div>
-      {/* <VideoSlide /> */}
-      <div className="container mx-auto p-4 items-center flex justify-center my-12">
-        <Support />
-      </div>
-      <IdentityIssues />
+
+      <div className="w-full h-1 bg-white opacity-20 my-16" />
+      <IdentityIssues ref={identityIssueRef} />
       <Footer />
     </div>
   );

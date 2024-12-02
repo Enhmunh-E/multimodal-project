@@ -166,9 +166,14 @@ interface ExampleProps {
 export interface WordData {
   text: string;
   value: number;
+  color: string;
 }
 
 // const colors = ["#143059", "#2F6B9A", "#82a6c2"];
+
+const randomHSLA = () => {
+  return `hsla(${~~(360 * Math.random())}, 70%, 72%, 0.8)`;
+};
 
 function wordFreq(text: string): WordData[] {
   const words: string[] = text.replace(/\./g, "").split(/\s/);
@@ -181,6 +186,7 @@ function wordFreq(text: string): WordData[] {
   return Object.keys(freqMap).map((word) => ({
     text: word,
     value: freqMap[word],
+    color: randomHSLA(),
   }));
 }
 
@@ -217,10 +223,6 @@ export default function Hero({
     Math.max(...words.map((w) => w.value)),
   ]);
 
-  const randomHSLA = () => {
-    return `hsla(${~~(360 * Math.random())}, 70%, 72%, 0.8)`;
-  };
-
   return (
     <div className="wordcloud">
       <Wordcloud
@@ -236,11 +238,10 @@ export default function Hero({
       >
         {(cloudWords) =>
           cloudWords.map((w) => {
-            const c = randomHSLA();
             return (
               <Text
                 key={w.text}
-                fill={c}
+                fill={(w as WordData).color}
                 textAnchor={"middle"}
                 transform={`translate(${w.x}, ${w.y}) rotate(${w.rotate})`}
                 fontSize={w.size}

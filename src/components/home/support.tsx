@@ -21,7 +21,7 @@ export const Support = () => {
         <div>
           <input
             className="w-full bg-transparent border border-white border-opacity-20 rounded-sm min-h-11 py-4 px-4 outline-none max-w-[400px] min-w-80"
-            placeholder="Diversity."
+            placeholder="Your answer here."
             value={identity}
             onChange={(e) => setIdentity(e.target.value)}
           />

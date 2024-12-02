@@ -1,14 +1,14 @@
 "use client";
 
 import { getIdentityIssues, submitIdentityIssue } from "@/app/actions";
-import { useEffect, useState } from "react";
+import { LegacyRef, useEffect, useState } from "react";
 
 type IdentityIssueType = {
   answer: string;
   id?: number;
 };
 
-export const IdentityIssues = () => {
+export const IdentityIssues = ({ ref }: { ref: LegacyRef<HTMLDivElement> }) => {
   const [identity, setIdentity] = useState("");
   const [loading, setLoading] = useState(false);
   const [identityIssues, setIdentityIssues] = useState<IdentityIssueType[]>([]);
@@ -29,7 +29,10 @@ export const IdentityIssues = () => {
     fetchIdentityIssues();
   }, []);
   return (
-    <div className="container mx-auto p-4 flex flex-col items-center justify-center gap-3">
+    <div
+      className="container mx-auto p-4 flex flex-col items-center justify-center gap-3"
+      ref={ref}
+    >
       <div className="border-white border w-full p-5 border-opacity-20 rounded flex flex-col md:flex-row gap-4">
         <div className="flex flex-1 flex-col md:w-1/2">
           <h1 className="text-xl underline text-center sm:text-left font-[family-name:var(--font-geist-mono)] font-bold">
