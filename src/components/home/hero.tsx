@@ -225,10 +225,16 @@ export default function Hero({
 
   return (
     <div className="wordcloud">
+      {/* <div
+        className="md:scale-50"
+        style={{
+          scale: 0.5,
+        }}
+      > */}
       <Wordcloud
         words={words}
         width={width}
-        height={height}
+        height={Math.max(height, 400)}
         fontSize={fontSizeSetter}
         font={"Impact"}
         padding={2}
@@ -253,6 +259,7 @@ export default function Hero({
           })
         }
       </Wordcloud>
+      {/* </div> */}
       {showControls && (
         <div>
           <label>

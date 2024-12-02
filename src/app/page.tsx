@@ -11,6 +11,33 @@ function capitalizeFirstLetter(val: string) {
   return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
 
+const cmuStudentIdentity = [
+  "Innovative",
+  "Diverse",
+  "Collaborative",
+  "Creative",
+  "Intellectual",
+  "Analytical",
+  "Visionary",
+  "Adaptable",
+  "Curious",
+  "Engaged",
+  "Open-minded",
+  "Determined",
+  "Skilled",
+  "Knowledgeable",
+  "Strategic",
+  "Confident",
+  "Disciplined",
+  "Empathetic",
+  "Focused",
+  "Honest",
+  "Independent",
+  "Professional",
+  "Trustworthy",
+  "Understanding",
+];
+
 const App = () => {
   const [size, setSize] = useState<{
     width: number;
@@ -20,10 +47,12 @@ const App = () => {
   const [responses, setResponses] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const texts = useMemo(() => {
-    return responses.reduce(
-      (prev, curr) =>
-        prev + (curr.answer ? capitalizeFirstLetter(curr.answer) + " " : " "),
-      ""
+    return (
+      responses.reduce(
+        (prev, curr) =>
+          prev + (curr.answer ? capitalizeFirstLetter(curr.answer) + " " : " "),
+        ""
+      ) + cmuStudentIdentity.join(" ")
     );
   }, [responses]);
   const welcomeRef = useRef<HTMLDivElement | null>(null);
