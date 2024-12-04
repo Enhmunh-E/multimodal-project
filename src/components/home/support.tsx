@@ -3,12 +3,17 @@
 import { submitIdentity } from "@/app/actions";
 import { useState } from "react";
 
-export const Support = () => {
+export const Support = ({
+  fetchResponses,
+}: {
+  fetchResponses: () => unknown;
+}) => {
   const [identity, setIdentity] = useState("");
   const [loading, setLoading] = useState(false);
   const submit = async () => {
     setLoading(true);
     await submitIdentity(identity);
+    await fetchResponses();
     setIdentity("");
     setLoading(false);
   };

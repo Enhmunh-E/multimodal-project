@@ -58,13 +58,13 @@ const App = () => {
   const welcomeRef = useRef<HTMLDivElement | null>(null);
   const ourIdentityRef = useRef<HTMLDivElement | null>(null);
   const identityIssueRef = useRef<HTMLDivElement | null>(null);
+  async function fetchResponses() {
+    setLoading(true);
+    const data = await getIdentities();
+    setResponses(data.data as ResponseType[]);
+    setLoading(false);
+  }
   useEffect(() => {
-    async function fetchResponses() {
-      setLoading(true);
-      const data = await getIdentities();
-      setResponses(data.data as ResponseType[]);
-      setLoading(false);
-    }
     fetchResponses();
     const onResize = () => {
       setSize({
@@ -119,7 +119,7 @@ const App = () => {
           </>
         )}
         <div className="mt-12 p-4">
-          <Support />
+          <Support fetchResponses={fetchResponses} />
         </div>
       </div>
 
